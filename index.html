@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>OutdoorGearLab — Smart Reviews for Outdoor Living</title>
+
+    <meta name="description"
+          content="Practical outdoor gear reviews, comparisons and buying guides for camping, gardening, fishing, tools and outdoor living.">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #183127;
+            background: #f7faf7;
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1150px;
+            margin: auto;
+        }
+
+        /* NAVBAR */
+
+        header {
+            background: white;
+            border-bottom: 1px solid #e1e8e3;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .navbar {
+            height: 72px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+
+        .logo span {
+            color: #2d6a4f;
+        }
+
+        nav {
+            display: flex;
+            gap: 28px;
+        }
+
+        nav a {
+            font-weight: 600;
+            font-size: 15px;
+        }
+
+        nav a:hover {
+            color: #2d6a4f;
+        }
+
+        /* HERO */
+
+        .hero {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #edf5ef, #f8fbf8);
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.3fr .7fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .eyebrow {
+            color: #2d6a4f;
+            font-size: 13px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+        }
+
+        .hero h1 {
+            font-size: clamp(45px, 6vw, 76px);
+            line-height: 1.02;
+            letter-spacing: -4px;
+            margin-bottom: 25px;
+        }
+
+        .hero p {
+            font-size: 19px;
+            color: #65736c;
+            max-width: 650px;
+        }
+
+        .buttons {
+            margin-top: 32px;
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .button {
+            padding: 13px 20px;
+            border-radius: 10px;
+            font-weight: 700;
+        }
+
+        .primary {
+            background: #173f2d;
+            color: white;
+        }
+
+        .secondary {
+            background: white;
+            border: 1px solid #c8d5cc;
+        }
+
+        .hero-card {
+            min-height: 320px;
+            border-radius: 25px;
+            background: #214c38;
+            color: white;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+
+        .hero-icon {
+            font-size: 110px;
+            opacity: .2;
+            margin-bottom: auto;
+        }
+
+        /* SECTIONS */
+
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            margin-bottom: 35px;
+        }
+
+        .section-title h2 {
+            font-size: 38px;
+            letter-spacing: -1.5px;
+        }
+
+        .section-title p {
+            color: #65736c;
+            margin-top: 8px;
+        }
+
+        /* CATEGORIES */
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+
+        .category {
+            background: white;
+            border: 1px solid #e0e8e2;
+            border-radius: 17px;
+            padding: 28px;
+            transition: .2s;
+        }
+
+        .category:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(20, 50, 35, .08);
+        }
+
+        .category-icon {
+            font-size: 36px;
+        }
+
+        .category h3 {
+            margin: 12px 0 5px;
+        }
+
+        .category p {
+            color: #65736c;
+        }
+
+        /* GUIDES */
+
+        .guides-section {
+            background: #edf4ef;
+        }
+
+        .guide-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+
+        .guide {
+            background: white;
+            padding: 28px;
+            border-radius: 17px;
+            border: 1px solid #dfe8e1;
+        }
+
+        .guide small {
+            color: #2d6a4f;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+
+        .guide h3 {
+            margin: 12px 0;
+            font-size: 21px;
+            line-height: 1.3;
+        }
+
+        .guide p {
+            color: #65736c;
+        }
+
+        .guide a {
+            display: inline-block;
+            margin-top: 18px;
+            color: #2d6a4f;
+            font-weight: 800;
+        }
+
+        /* COMPARISON */
+
+        .comparison-box {
+            background: white;
+            border: 1px solid #dfe8e1;
+            border-radius: 17px;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 650px;
+        }
+
+        th,
+        td {
+            padding: 17px;
+            text-align: left;
+            border-bottom: 1px solid #e5ebe7;
+        }
+
+        th {
+            background: #edf4ef;
+        }
+
+        /* ABOUT */
+
+        .about {
+            background: #f0f6f1;
+        }
+
+        .about-content {
+            max-width: 800px;
+        }
+
+        .about h2 {
+            font-size: 40px;
+            line-height: 1.15;
+            margin-bottom: 20px;
+        }
+
+        .about p {
+            color: #65736c;
+        }
+
+        .disclosure {
+            margin-top: 25px;
+            padding: 20px;
+            background: white;
+            border-left: 4px solid #2d6a4f;
+            border-radius: 10px;
+        }
+
+        /* FOOTER */
+
+        footer {
+            background: #173f2d;
+            color: #dce9e1;
+            padding: 30px 0;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 750px) {
+
+            nav {
+                display: none;
+            }
+
+            .hero {
+                padding: 65px 0;
+            }
+
+            .hero-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 48px;
+                letter-spacing: -2px;
+            }
+
+            .category-grid,
+            .guide-grid {
+                grid-template-columns: 1fr;
+            }
+
+            section {
+                padding: 60px 0;
+            }
+
+            .section-title h2 {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="container navbar">
+
+        <a href="#" class="logo">
+            Outdoor<span>Gear</span>Lab
+        </a>
+
+        <nav>
+            <a href="#categories">Categories</a>
+            <a href="#guides">Buying Guides</a>
+            <a href="#comparisons">Comparisons</a>
+            <a href="#about">About</a>
+        </nav>
+
+    </div>
+</header>
+
+
+<main>
+
+<!-- HERO -->
+
+<section class="hero">
+
+    <div class="container hero-grid">
+
+        <div>
+
+            <div class="eyebrow">
+                OUTDOOR GEAR • REVIEWS • GUIDES
+            </div>
+
+            <h1>
+                Find the right gear before you buy.
+            </h1>
+
+            <p>
+                Practical reviews, comparisons and buying guides
+                for camping, gardening, fishing, tools and everyday
+                outdoor living.
+            </p>
+
+            <div class="buttons">
+
+                <a href="#guides" class="button primary">
+                    Explore Guides
+                </a>
+
+                <a href="#categories" class="button secondary">
+                    Browse Categories
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="hero-card">
+
+            <div class="hero-icon">
+                🏕️
+            </div>
+
+            <h2>
+                Smart choices.
+            </h2>
+
+            <p>
+                Real-world outdoor gear information.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- CATEGORIES -->
+
+<section id="categories">
+
+    <div class="container">
+
+        <div class="section-title">
+
+            <div class="eyebrow">
+                EXPLORE
+            </div>
+
+            <h2>
+                Outdoor Categories
+            </h2>
+
+            <p>
+                Practical equipment and gear for different kinds
+                of outdoor activities.
+            </p>
+
+        </div>
+
+
+        <div class="category-grid">
+
+            <div class="category">
+
+                <div class="category-icon">🏕️</div>
+
+                <h3>Camping</h3>
+
+                <p>
+                    Tents, lighting, cooking equipment and camping essentials.
+                </p>
+
+            </div>
+
+
+            <div class="category">
+
+                <div class="category-icon">🌱</div>
+
+                <h3>Gardening</h3>
+
+                <p>
+                    Garden tools, equipment and useful solutions for outdoor spaces.
+                </p>
+
+            </div>
+
+
+            <div class="category">
+
+                <div class="category-icon">🎣</div>
+
+                <h3>Fishing</h3>
+
+                <p>
+                    Rods, reels, lures, tackle and practical fishing equipment.
+                </p>
+
+            </div>
+
+
+            <div class="category">
+
+                <div class="category-icon">🛠️</div>
+
+                <h3>Outdoor Tools</h3>
+
+                <p>
+                    Hand tools and equipment for outdoor maintenance and projects.
+                </p>
+
+            </div>
+
+
+            <div class="category">
+
+                <div class="category-icon">🔋</div>
+
+                <h3>Power Equipment</h3>
+
+                <p>
+                    Battery tools, portable power stations and outdoor machines.
+                </p>
+
+            </div>
+
+
+            <div class="category">
+
+                <div class="category-icon">🌲</div>
+
+                <h3>Outdoor Living</h3>
+
+                <p>
+                    Useful gear for yards, patios and everyday outdoor activities.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- BUYING GUIDES -->
+
+<section id="guides" class="guides-section">
+
+    <div class="container">
+
+        <div class="section-title">
+
+            <div class="eyebrow">
+                START HERE
+            </div>
+
+            <h2>
+                Buying Guides
+            </h2>
+
+            <p>
+                Simple explanations to help readers understand
+                what actually matters before buying.
+            </p>
+
+        </div>
+
+
+        <div class="guide-grid">
+
+            <article class="guide">
+
+                <small>GARDENING</small>
+
+                <h3>
+                    Best Garden Tools for Small Backyards
+                </h3>
+
+                <p>
+                    A practical guide to choosing compact and useful
+                    garden tools.
+                </p>
+
+                <a href="#">
+                    Read Guide →
+                </a>
+
+            </article>
+
+
+            <article class="guide">
+
+                <small>POWER</small>
+
+                <h3>
+                    How to Choose a Portable Power Station
+                </h3>
+
+                <p>
+                    Understand capacity, output, charging and other
+                    important specifications.
+                </p>
+
+                <a href="#">
+                    Read Guide →
+                </a>
+
+            </article>
+
+
+            <article class="guide">
+
+                <small>TOOLS</small>
+
+                <h3>
+                    Battery vs Corded Outdoor Tools
+                </h3>
+
+                <p>
+                    Compare convenience, runtime, maintenance and
+                    practical use.
+                </p>
+
+                <a href="#">
+                    Read Guide →
+                </a>
+
+            </article>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- COMPARISON -->
+
+<section id="comparisons">
+
+    <div class="container">
+
+        <div class="section-title">
+
+            <div class="eyebrow">
+                COMPARE
+            </div>
+
+            <h2>
+                Simple Gear Comparisons
+            </h2>
+
+            <p>
+                A clear comparison format for future product reviews.
+            </p>
+
+        </div>
+
+
+        <div class="comparison-box">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+                        <th>Feature</th>
+                        <th>Option A</th>
+                        <th>Option B</th>
+                        <th>What to Consider</th>
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+                    <tr>
+                        <td>Best for</td>
+                        <td>Light use</td>
+                        <td>Heavy use</td>
+                        <td>Match the equipment to the job</td>
+                    </tr>
+
+                    <tr>
+                        <td>Portability</td>
+                        <td>High</td>
+                        <td>Medium</td>
+                        <td>Consider storage and transportation</td>
+                    </tr>
+
+                    <tr>
+                        <td>Maintenance</td>
+                        <td>Low</td>
+                        <td>Medium</td>
+                        <td>Consider long-term upkeep</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ABOUT -->
+
+<section id="about" class="about">
+
+    <div class="container">
+
+        <div class="about-content">
+
+            <div class="eyebrow">
+                ABOUT OUTDOORGEARLAB
+            </div>
+
+            <h2>
+                Outdoor gear without the guesswork.
+            </h2>
+
+            <p>
+                OutdoorGearLab is a practical outdoor equipment
+                website focused on reviews, comparisons and buying
+                guides.
+            </p>
+
+            <p style="margin-top:15px;">
+                Our goal is simple: explain what matters, compare
+                useful options and help readers make informed
+                purchasing decisions.
+            </p>
+
+
+            <div class="disclosure">
+
+                <strong>Affiliate Disclosure</strong>
+
+                <br><br>
+
+                Some future articles may contain affiliate links.
+                If a reader purchases through an eligible link,
+                OutdoorGearLab may receive a commission at no
+                additional cost to the reader.
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+</main>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    <div class="container footer-content">
+
+        <strong>
+            OutdoorGearLab
+        </strong>
+
+        <span>
+            Smart Reviews for Outdoor Living
+        </span>
+
+        <span>
+            © 2026 OutdoorGearLab
+        </span>
+
+    </div>
+
+</footer>
+
+</body>
+</html>
